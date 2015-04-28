@@ -18,7 +18,7 @@ To run a "plain" Zookeper instance without cluster support, the image can be sta
         -p 3888:3888 \
         tobilg/zookeeper
 
-If you want to dynmically configure a cluster, the image can be run with
+If you want to dynmically configure a cluster, the image can be run with (Debian/Ubuntu-based hosts)
 
     $ docker run -d \
         --name zookeeper \
@@ -29,6 +29,10 @@ If you want to dynmically configure a cluster, the image can be run with
         -p 2888:2888 \
         -p 3888:3888 \
         tobilg/zookeeper
+
+RedHat/CentOS/Fedora-based hosts' `LOCAL_ZK_IP` line need to replaced with
+
+    -e LOCAL_ZK_IP=$(/sbin/ifconfig eth0 | grep 'inet ' | awk '{print $2}') \
 
 The `LOCAL_ZK_IP` must be provided to be matched to the hosts contained in `ZOOKEEPER_HOSTS` for the generation of the `myid` file (see [Zookeeper docs](http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html#sc_RunningReplicatedZooKeeper)).
 Be sure to replace `eth0` with the "public" network interface.
