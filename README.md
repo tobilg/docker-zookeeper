@@ -24,7 +24,7 @@ If you want to dynmically configure a cluster, the image can be run with
         --name zookeeper \
         --net=host \
         -e ZOOKEEPER_HOSTS=192.168.0.1:2888:3888,192.168.0.2:2888:3888,192.168.0.3:2888:3888 \
-        -e LOCAL_ZK_IP=$(/usr/bin/ip -o -4 addr list eth0 | grep global | awk \'{print $4}\' | cut -d/ -f1) \
+        -e LOCAL_ZK_IP=$(/usr/bin/ip -o -4 addr list eth0 | grep global | awk '{print $4}' | cut -d: -f1) \
         -p 2181:2181 \
         -p 2888:2888 \
         -p 3888:3888 \
