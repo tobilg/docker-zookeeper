@@ -7,9 +7,9 @@ RUN wget -q -O - http://www.eu.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeep
     && mkdir -p /var/log/zookeeper \
     && mkdir -p /var/lib/zookeeper
 
-#RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-
 ADD bootstrap.sh /usr/local/bin/bootstrap.sh
+
+RUN chmod +x /usr/local/bin/bootstrap.sh
 
 ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
 
@@ -18,8 +18,6 @@ EXPOSE 2181 2888 3888
 WORKDIR /opt/zookeeper
 
 VOLUME ["/opt/zookeeper/conf", "/var/log/zookeeper"]
-
-#RUN /bin/bash -c "source /usr/local/bin/bootstrap.sh"
 
 ENTRYPOINT ["/usr/local/bin/bootstrap.sh"]
 CMD ["start-foreground"]
