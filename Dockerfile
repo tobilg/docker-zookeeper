@@ -1,5 +1,5 @@
 FROM java:openjdk-7-jre
-MAINTAINER tobilg <fb.tools.github@gmail.com>
+MAINTAINER tobilg <tobilg@gmail.com>
 
 RUN apt-get update && apt-get install -y wget
 RUN wget -q -O - http://www.eu.apache.org/dist/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz | tar -xzf - -C /opt
